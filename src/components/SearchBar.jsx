@@ -1,9 +1,17 @@
 import React, { useState } from "react";
 
-function SearchBar() {
+function SearchBar({ fetchWeather }) {
   const [city, setCity] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (city.trim()) {
+      fetchWeather(city);
+      setCity("");
+    }
+  };
   return (
-    <form className="flex">
+    <form className="flex" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Enter City Name"
