@@ -4,7 +4,7 @@ import axios from "axios";
 import WeatherCart from "./components/WeatherCart";
 
 function App() {
-  const [Weather, setWeather] = useState(null);
+  const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -37,7 +37,9 @@ function App() {
         <div className="bg-zinc-800/90 text-white rounded-lg shadow-lg p-8 max-w-md w-full">
           <h1 className="text-3xl font-bold text-center mb-6">Weather App</h1>
           <SearchBar fetchWeather={fetchWeather} />
-          {Weather && <WeatherCart Weather={Weather} />}
+          {loading && <p className="text-center mt-4">Loading...</p>}
+          {error && <p className="text-red-500 text-center mt-4">{error}</p>}
+          {weather && <WeatherCart weather={weather} />}
         </div>
       </div>
     </>
